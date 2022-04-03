@@ -162,6 +162,10 @@ class TestDecimalToRoman(unittest.TestCase):
         roman_number = convert_decimal_to_roman(500)
         self.assertEqual(roman_number, "D")
 
+    def test_504(self):
+        roman_number = convert_decimal_to_roman(504)
+        self.assertEqual(roman_number, "DIV")
+
     def test_693(self):
         roman_number = convert_decimal_to_roman(693)
         self.assertEqual(roman_number, "DCXCIII")
