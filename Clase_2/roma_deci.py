@@ -36,6 +36,7 @@ def convert_roman_to_decimal(roman_number):
     return decimal_number
 
 class TestRomanToDecimal(unittest.TestCase):
+
     def test_I(self):
         decimal_number = convert_roman_to_decimal('I')
         self.assertEqual(decimal_number, 1)
@@ -56,69 +57,121 @@ class TestRomanToDecimal(unittest.TestCase):
         decimal_number = convert_roman_to_decimal('VI')
         self.assertEqual(decimal_number, 6)
 
-    def test_VII(self):
-        decimal_number = convert_roman_to_decimal('VII')
-        self.assertEqual(decimal_number, 7)
-
-    def test_VIII(self):
-        decimal_number = convert_roman_to_decimal('VIII')
-        self.assertEqual(decimal_number, 8)
+    def test_IX(self):
+        decimal_number = convert_roman_to_decimal('IX')
+        self.assertEqual(decimal_number, 9)
 
     def test_X(self):
         decimal_number = convert_roman_to_decimal('X')
         self.assertEqual(decimal_number, 10)
 
-    def test_XIV(self):
-        decimal_number = convert_roman_to_decimal('XIV')
-        self.assertEqual(decimal_number, 14)
+    def test_XI(self):
+        decimal_number = convert_roman_to_decimal('XI')
+        self.assertEqual(decimal_number, 11)
+
+    def test_XII(self):
+        decimal_number = convert_roman_to_decimal('XII')
+        self.assertEqual(decimal_number, 12)
+
+    def test_XVIII(self):
+        decimal_number = convert_roman_to_decimal('XVIII')
+        self.assertEqual(decimal_number, 18)
 
     def test_XIX(self):
         decimal_number = convert_roman_to_decimal('XIX')
         self.assertEqual(decimal_number, 19)
 
-    def test_XXIV(self):
-        decimal_number = convert_roman_to_decimal('XXIV')
-        self.assertEqual(decimal_number, 24)
+    def test_XX(self):
+        decimal_number = convert_roman_to_decimal('XX')
+        self.assertEqual(decimal_number, 20)
+
+    def test_XXI(self):
+        decimal_number = convert_roman_to_decimal('XXI')
+        self.assertEqual(decimal_number, 21)
+
+    def test_XXIII(self):
+        decimal_number = convert_roman_to_decimal('XXIII')
+        self.assertEqual(decimal_number, 23)
         
-    def test_XLIII(self):
-        decimal_number = convert_roman_to_decimal('XLIII')
-        self.assertEqual(decimal_number, 43)
+    def test_XXX(self):
+        decimal_number = convert_roman_to_decimal('XXX')
+        self.assertEqual(decimal_number, 30)
 
-    def test_LVIII(self):
-        decimal_number = convert_roman_to_decimal('LVIII')
-        self.assertEqual(decimal_number, 58)
+    def test_XXXV(self):
+        decimal_number = convert_roman_to_decimal('XXXV')
+        self.assertEqual(decimal_number, 35)
+    
+    def test_XXXVIII(self):
+        decimal_number = convert_roman_to_decimal('XXXVIII')
+        self.assertEqual(decimal_number, 38)
 
-    def test_LXXII(self):
-        decimal_number = convert_roman_to_decimal('LXXII')
-        self.assertEqual(decimal_number, 72)
+    def test_XL(self):
+        decimal_number = convert_roman_to_decimal('XL')
+        self.assertEqual(decimal_number, 40)
 
-    def test_LXXXVII(self):
-        decimal_number = convert_roman_to_decimal('LXXXVII')
-        self.assertEqual(decimal_number, 87)
+    def test_XLVI(self):
+        decimal_number = convert_roman_to_decimal('XLVI')
+        self.assertEqual(decimal_number, 46)
+    
+    def test_LIII(self):
+        decimal_number = convert_roman_to_decimal('LIII')
+        self.assertEqual(decimal_number, 53)
 
-    def test_XCI(self):
-        decimal_number = convert_roman_to_decimal('XCI')
-        self.assertEqual(decimal_number, 91)
+    def test_LXVII(self):
+        decimal_number = convert_roman_to_decimal('LXVII')
+        self.assertEqual(decimal_number, 67)
+    
+    def test_LXX(self):
+        decimal_number = convert_roman_to_decimal('LXX')
+        self.assertEqual(decimal_number, 70)
+
+    def test_LXXXI(self):
+        decimal_number = convert_roman_to_decimal('LXXXI')
+        self.assertEqual(decimal_number, 81)
+
+    def test_XCIX(self):
+        decimal_number = convert_roman_to_decimal('XCIX')
+        self.assertEqual(decimal_number, 99)
+
+    def test_C(self):
+        decimal_number = convert_roman_to_decimal('C')
+        self.assertEqual(decimal_number, 100)
 
     def test_CI(self):
         decimal_number = convert_roman_to_decimal('CI')
         self.assertEqual(decimal_number, 101)
+    
+    def test_CDLVI(self):
+        decimal_number = convert_roman_to_decimal('CDLVI')
+        self.assertEqual(decimal_number, 456)
 
-    def test_CXLIX(self):
-        decimal_number = convert_roman_to_decimal('CXLIX')
-        self.assertEqual(decimal_number, 149)
+    def test_D(self):
+        decimal_number = convert_roman_to_decimal('D')
+        self.assertEqual(decimal_number, 500)
 
-    def test_CDLXXVIII(self):
-        decimal_number = convert_roman_to_decimal('CDLXXVIII')
-        self.assertEqual(decimal_number, 478)
+    def test_DIV(self):
+        decimal_number = convert_roman_to_decimal('DIV')
+        self.assertEqual(decimal_number, 504)
 
     def test_DCXCIII(self):
         decimal_number = convert_roman_to_decimal('DCXCIII')
         self.assertEqual(decimal_number, 693)
 
-    def test_CMLIV(self):
-        decimal_number = convert_roman_to_decimal('CMLIV')
-        self.assertEqual(decimal_number, 954)
+    def test_DCCCXXV(self):
+        decimal_number = convert_roman_to_decimal('DCCCXXV')
+        self.assertEqual(decimal_number, 748)
+
+    def test_DCCCXXV(self):
+        decimal_number = convert_roman_to_decimal('DCCCXXV')
+        self.assertEqual(decimal_number, 825)
+
+    def test_CMXLIX(self):
+        decimal_number = convert_roman_to_decimal('CMXLIX')
+        self.assertEqual(decimal_number, 949)
+
+    def test_CMXCIX(self):
+        decimal_number = convert_roman_to_decimal('CMXCIX')
+        self.assertEqual(decimal_number, 999)
 
 if __name__ == '__main__':
     unittest.main()
