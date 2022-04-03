@@ -173,5 +173,17 @@ class TestRomanToDecimal(unittest.TestCase):
         decimal_number = convert_roman_to_decimal('CMXCIX')
         self.assertEqual(decimal_number, 999)
 
+    def test_MCMXCIX(self):
+        decimal_number = convert_roman_to_decimal('MCMXCIX')
+        self.assertEqual(decimal_number, 1999)
+
+    def test_MMCMXCIX(self):
+        decimal_number = convert_roman_to_decimal('MMCMXCIX')
+        self.assertEqual(decimal_number, 2999)
+
+    def test_MMMCMXCIX(self):
+        decimal_number = convert_roman_to_decimal('MMMCMXCIX')
+        self.assertEqual(decimal_number, 3999)
+
 if __name__ == '__main__':
     unittest.main()
