@@ -2,15 +2,21 @@ import unittest
 
 
 def convert_decimal_to_roman(decimal_number):
+    roman4 = ''
     roman1 = ''
     roman2 = ''
     roman3 = ''
     decimal_number_units = (decimal_number%10)
     decimal_number_tens = (decimal_number%100-decimal_number%10)//10
     decimal_number_hundreds = (decimal_number%1000-decimal_number%100)//100
-
+    decimal_number_thousand = (decimal_number%10000-decimal_number%1000)//1000
 
     if decimal_number:
+
+        for digit in range(decimal_number_thousand):
+            if decimal_number_thousand < 4:
+                roman4 += 'M'
+
         for digit in range(decimal_number_hundreds):
             if decimal_number_hundreds < 4:
                 roman1 += 'C'
@@ -44,7 +50,7 @@ def convert_decimal_to_roman(decimal_number):
             elif decimal_number_units == 9:
                 roman3 = 'IX'
 
-    roman = roman1 + roman2 + roman3
+    roman = roman4 + roman1 + roman2 + roman3
 
     return roman
 
@@ -181,6 +187,18 @@ class TestDecimalToRoman(unittest.TestCase):
     def test_999(self):
         roman_number = convert_decimal_to_roman(999)
         self.assertEqual(roman_number, "CMXCIX")
+
+    def test_1999(self):
+        roman_number = convert_decimal_to_roman(1999)
+        self.assertEqual(roman_number, "MCMXCIX")
+
+    def test_2999(self):
+        roman_number = convert_decimal_to_roman(2999)
+        self.assertEqual(roman_number, "MMCMXCIX")
+
+    def test_3999(self):
+        roman_number = convert_decimal_to_roman(3999)
+        self.assertEqual(roman_number, "MMMCMXCIX")
 
 if __name__ == '__main__':
     unittest.main()
