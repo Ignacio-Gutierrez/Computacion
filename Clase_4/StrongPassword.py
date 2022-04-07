@@ -1,4 +1,3 @@
-
 def minimumNumber(n, password):
 
     special_characters = "!@#$%^&*()-+"
@@ -14,5 +13,3 @@ def minimumNumber(n, password):
         res += 1
 
     return max(res,6 - n)
-
-    
