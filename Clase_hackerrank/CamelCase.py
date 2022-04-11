@@ -1,5 +1,3 @@
-s = input()
-
 def camelcase(s):
     # Write your code here
     indice = 0
@@ -10,6 +8,3 @@ def camelcase(s):
         if letra.isupper() == True:
             palabra += 1
     return palabra
-    
-
-print(camelcase(s))
