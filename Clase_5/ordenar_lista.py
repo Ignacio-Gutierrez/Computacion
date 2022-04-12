@@ -7,3 +7,4 @@ def ordenar(Lista):
                 TMP = Lista[I]
                 Lista[I] = Lista[J]
                 Lista[J] = TMP
+    return Lista
