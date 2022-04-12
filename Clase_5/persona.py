@@ -3,3 +3,9 @@ class Persona:
         self.dni = dni
         self.apellido = apellido
         self.nombre = nombre
+
+    def __repr__(self):
+        return f'Persona: {self.dni}, {self.apellido}, {self.nombre}'
+
+persona = Persona()
+print(persona)
