@@ -12,37 +12,81 @@ class CoffeeMachineTest(unittest.TestCase):
         machine = CoffeeMachine()
         machine.insert_coin()
         self.assertEqual(machine.coins, 1)
-
-    def setUp(self):
-        self.coffee = CoffeeMachine()
-
+        
     def test_cafe_solo(self):
-        self.assertEqual(self.coffee.cafetera(1), 'Haciendo cafe')
-        self.assertEqual(self.coffee.water_amount(10), 'Con 10ml de agua')
-        self.assertEqual(self.coffee.coffee_amount(5), 'Con 5gr de cafe')
-        self.assertEqual(self.coffee.sugar_amount(0), 'Sin azucar')
+        machine = CoffeeMachine()
+        machine.insert_coin()
+        self.assertEqual(machine.cafetera(), 'Haciendo cafe')
+        self.assertEqual(machine.water, 6500-200)
+        self.assertEqual(machine.coffee, 500-7)
+        self.assertEqual(machine.sugar, 250-5)
 
-    def test_cafe(self):
-        self.assertEqual(self.coffee.cafetera(1), 'Haciendo cafe')
-        self.assertEqual(self.coffee.water_amount(10), 'Con 10ml de agua')
-        self.assertEqual(self.coffee.coffee_amount(7), 'Con 7gr de cafe')
-        self.assertEqual(self.coffee.sugar_amount(3), 'Con 3gr de azucar')
+    def test_insert_coffee(self):
+        machine = CoffeeMachine()
+        machine.insert_coffee(1000)
+        self.assertEqual(machine.coffee, 500+1000)
 
-    #Hacemos de cuenta que el producto en la cafetera es menor a la que necesita el vaso
-    def test_cafe_agua_insuficiente(self):
-        self.assertEqual(self.coffee.cafetera(1), 'Haciendo cafe')
-        self.assertEqual(self.coffee.water_amount(9999), 'No hay agua suficiente')
+    def test_insert_coffee_second_time(self):
+        machine = CoffeeMachine()
+        machine.insert_coffee(1000)
+        machine.insert_coffee(1000)
+        self.assertEqual(machine.coffee, 2500)
 
-    def test_cafe_cafe_insuficiente(self):
-        self.assertEqual(self.coffee.cafetera(1), 'Haciendo cafe')
-        self.assertEqual(self.coffee.water_amount(10), 'Con 10ml de agua')
-        self.assertEqual(self.coffee.coffee_amount(9999), 'No hay cafe suficiente')
+    def test_insert_sugar(self):
+        machine = CoffeeMachine()
+        machine.insert_sugar(1000)
+        self.assertEqual(machine.sugar, 1250)
 
-    def test_cafe_azucar_insuficiente(self):
-        self.assertEqual(self.coffee.cafetera(1), 'Haciendo cafe')
-        self.assertEqual(self.coffee.water_amount(10), 'Con 10ml de agua')
-        self.assertEqual(self.coffee.coffee_amount(5), 'Con 5gr de cafe')
-        self.assertEqual(self.coffee.sugar_amount(9999), 'No hay azucar suficiente')
+    def test_insert_coffee_second_time(self):
+        machine = CoffeeMachine()
+        machine.insert_sugar(1000)
+        machine.insert_sugar(1000)
+        self.assertEqual(machine.sugar, 2250)
+
+    def test_get_coffee_ok(self):
+        machine = CoffeeMachine()
+        machine.insert_coin()
+        machine.insert_coin()
+        machine.insert_coffee(1000)
+        machine.insert_sugar(1000)
+        coffee_result = machine.cafetera()
+        self.assertTrue(coffee_result)
+        self.assertEqual(machine.coffee, 1500-7)
+        self.assertEqual(machine.sugar, 1250-5)
+        self.assertEqual(machine.coins, 1)
+
+    def test_get_coffee_error_no_coffee(self):
+        machine = CoffeeMachine()
+        machine.insert_coin()
+        machine.insert_coin()
+        machine.insert_sugar(-250)
+        coffee_result = machine.cafetera()
+        self.assertEqual(machine.cafetera(), 'No hay azucar')
+        self.assertEqual(machine.coffee, 500)
+        self.assertEqual(machine.sugar, 0)
+        self.assertEqual(machine.coins, 2)
+
+    def test_get_coffee_error_no_sugar(self):
+        machine = CoffeeMachine()
+        machine.insert_coin()
+        machine.insert_coin()
+        machine.insert_sugar(-250)
+        machine.insert_coffee(1000)
+        coffee_result = machine.cafetera()
+        self.assertEqual(coffee_result, 'No hay azucar')
+        self.assertEqual(machine.sugar, 0)
+        self.assertEqual(machine.coffee, 1500)
+        self.assertEqual(machine.coins, 2)
+
+    def test_get_coffee_error_no_coin(self):
+        machine = CoffeeMachine()
+        machine.insert_coffee(1000)
+        machine.insert_sugar(1000)
+        coffee_result = machine.cafetera()
+        self.assertFalse(coffee_result)
+        self.assertEqual(machine.sugar, 1250)
+        self.assertEqual(machine.coffee, 1500)
+        self.assertEqual(machine.coins, 0)
 
 if __name__ == "__main__":
     unittest.main()
