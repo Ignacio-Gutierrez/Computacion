@@ -1,5 +1,3 @@
-from collections import Counter
-
 class MasterCoffeeMachine:
 
     def __init__(self):
@@ -42,49 +40,85 @@ class MasterCoffeeMachine:
             },
         }
 
-
     def add_resource(self, type, amount):
         self.resources[type] += amount
 
     def chose_drink(self, election):
         self.election = election
 
-    def CafeteraPlus(self):
+    def chose_sugar(self, put_sugar):
+        self.put_sugar = put_sugar
+
+    def Drink_Maker(self, election):
 
         if self.resources['coin'] == 0:
             return 'Inserte una moneda'
-        if self.resources['coin'] > 0:
-            if self.resources['water'] == 0:
-                return 'No hay agua'
-            if self.resources['coffee'] == 0:
+        if self.resources['water'] < 200:
+            return 'No hay agua'
+        if self.resources['sugar'] < self.put_sugar:
+            return 'No hay azucar'
+        if election == 1:
+            if self.resources['coffee'] < 7:
                 return 'No hay café'
-            if self.resources['sugar'] == 0:
-                return 'No hay azucar'
-            if self.resources['milk'] == 0:
-                return 'No hay leche'      
-            if self.resources['chocolate'] == 0:
-                return 'No hay chocolate'
-            if self.resources['tea'] == 0:
-                return 'No hay té'     
             else:
+                self.resources['coffee'] -= 7
+                self.resources['water'] -= 200
+                self.resources['sugar'] -= self.put_sugar
                 self.resources['coin'] -= 1
-                self.resources['sugar'] -= 5
-
-                if self.election == 1:
-                    self.resources = Counter(self.resources) - Counter(self.recipies['coffee_alone'])
-                    return 'Haciendo Café Simple'
-                if self.election == 2:
-                    self.resources = Counter(self.resources) - Counter(self.recipies['coffee_double'])
-                    return 'Haciendo Café Doble'
-                if self.election == 3:
-                    self.resources = Counter(self.resources) - Counter(self.recipies['coffee_milk'])
-                    return 'Haciendo Café con Leche'
-                if self.election == 4:
-                    self.resources = Counter(self.resources) - Counter(self.recipies['coffee_milk_double'])
-                    return 'Haciendo Café Doble con Leche'
-                if self.election == 5:
-                    self.resources = Counter(self.resources) - Counter(self.recipies['capuccino'])
-                    return 'Haciendo Capuchino'
-                if self.election == 6:
-                    self.resources = Counter(self.resources) - Counter(self.recipies['tea_simple'])
-                    return 'Haciendo Té'   
+                return 'Haciendo Café Simple'
+        if election == 2:
+            if self.resources['coffee'] < 14:
+                return 'No hay café'   
+            else:
+                self.resources['coffee'] -= 14  
+                self.resources['water'] -= 200
+                self.resources['sugar'] -= self.put_sugar
+                self.resources['coin'] -= 1
+                return 'Haciendo Café Doble'
+        if election == 3:
+            if self.resources['coffee'] < 7:
+                return 'No hay café'
+            if self.resources['milk'] < 50:
+                return 'No hay leche'
+            else:
+                self.resources['coffee'] -= 7
+                self.resources['milk'] -= 50
+                self.resources['water'] -= 150
+                self.resources['sugar'] -= self.put_sugar
+                self.resources['coin'] -= 1
+                return 'Haciendo Café con Leche'
+        if election == 4:
+            if self.resources['coffee'] < 14:
+                return 'No hay café'
+            if self.resources['milk'] < 50:
+                return 'No hay leche'
+            else:
+                self.resources['coffee'] -= 14
+                self.resources['milk'] -= 50
+                self.resources['water'] -= 150
+                self.resources['sugar'] -= self.put_sugar
+                self.resources['coin'] -= 1
+                return 'Haciendo Café Doble con Leche'
+        if election == 5:
+            if self.resources['coffee'] < 14:
+                return 'No hay café'
+            if self.resources['milk'] < 200:
+                return 'No hay leche'
+            if self.resources['chocolate'] < 1:
+                return 'No hay chocolate'
+            else:
+                self.resources['coffee'] -= 14
+                self.resources['milk'] -= 200
+                self.resources['chocolate'] -= 1
+                self.resources['sugar'] -= self.put_sugar
+                self.resources['coin'] -= 1
+                return 'Haciendo Capuchino'
+        if election == 6:
+            if self.resources['tea'] < 20:
+                return 'No hay té'
+            else:
+                self.resources['tea'] -= 20
+                self.resources['water'] -= 200
+                self.resources['sugar'] -= self.put_sugar
+                self.resources['coin'] -= 1
+                return 'Haciendo Té'
